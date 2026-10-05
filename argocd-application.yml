@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ci-cd-project
+  name: cd
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ci-cd-project
+      app: cd
   template:
     metadata:
       labels:
-        app: ci-cd-project
+        app: cd
     spec:
       containers:
-        - name: ci-cd-project
-          image: ci-cd-project:1.0
+        - name: cd
+          image: cd:1.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ci-cd-project
+  name: cd
 spec:
   selector:
-    app: ci-cd-project
+    app: cd
   ports:
     - protocol: TCP
       port: 8080
